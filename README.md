@@ -1,5 +1,5 @@
 # Task Manager For ThinkEasy
-(Jestli budete mít otázky a nedorozumění napiste mi, hned odpovím)
+(Jestli budete mít otázky a nedorozumění napište mi, hned odpovím)
 
  Návod na spuštění
 
