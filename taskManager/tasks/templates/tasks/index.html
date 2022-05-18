@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tasks</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+</head>
+<body>
+<div id="page-container" class="side-trans-enabled">
+
+            <!-- Main Container -->
+            <main id="main-container">
+                <!-- Page Content -->
+                <div class="hero-static d-flex align-items-center">
+                    <div class="w-100">
+                        <!-- Sign In Section -->
+                        <div class="content content-full bg-white">
+                            <div class="row justify-content-center">
+                                <div class="col-md-8 col-lg-6 col-xl-4 py-4">
+                                    <!-- Header -->
+                                    <div class="text-center">
+                                        <p class="mb-2">
+                                            <i class="fa fa-2x fa-circle-notch text-primary"></i>
+                                        </p>
+                                        <h1 class="h4 mb-1">
+                                            Your tasks
+                                        </h1>
+                                        <form action="create" method="get">
+                                            <button type="submit" class="btn btn-outline-success mt-2">CREATE</button>
+                                            <a href="/logout" class="btn btn-outline-dark mt-2">LOGOUT</a>
+                                        </form>
+                                    </div>
+                                    {% if unfulfilled_tasks or fulfilled_tasks%}
+                                    {% for item in unfulfilled_tasks %}
+                                    <div class="list-group mt-3 ">
+                                      <div class="list-group-item align-items-start" style="background-color: rgb(248,183,183)">
+                                        <div class="d-flex w-100 justify-content-between">
+                                          <h5 class="mb-1 text-truncate" style="max-width: 60%;">{{item.title}}</h5>
+                                          <small>{{item.created_at}}</small>
+                                        </div>
+                                        <p class="mb-1 text-break"  >{{item.description}}</p>
+                                        <div class="d-flex justify-content-between">
+                                            <form action="{% url 'edit' id=item.id %}" method="post" enctype="multipart/form-data">
+                                                {% csrf_token %}
+                                                <button type='submit' class='btn btn-success'>FULFILLED</button>
+                                            </form>
+                                            <form action="{% url 'delete' id=item.id %}" method="post">{% csrf_token %}
+                                                <button type="submit" class="btn btn-danger">DELETE</button>
+                                            </form>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    {% endfor %}
+
+                                    {% for item in fulfilled_tasks %}
+                                    <div class="list-group mt-3 ">
+                                      <div class="list-group-item align-items-start" style="background-color: rgb(205,248,183)">
+                                        <div class="d-flex w-100 justify-content-between">
+                                          <h5 class="mb-1">{{item.title}}</h5>
+                                          <small>{{item.created_at}}</small>
+                                        </div>
+                                        <p class="mb-1">{{item.description}}</p>
+                                        <div class="d-flex justify-content-end">
+                                          <form action="{% url 'delete' id=item.id %}" method="post">{% csrf_token %}
+                                              <button type="submit" class="btn btn-danger">DELETE</button>
+                                          </form>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    {% endfor %}
+                                    {% else %}
+                                        <p class="text-center mt-5">You don't have any tasks, you are free!</p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- END Page Content -->
+            </main>
+            <!-- END Main Container -->
+        </div>
+        <!-- END Page Container -->
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</body>
+</html>
