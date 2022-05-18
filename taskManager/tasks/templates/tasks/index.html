@@ -35,7 +35,7 @@
                                     <div class="list-group mt-3 ">
                                       <div class="list-group-item align-items-start" style="background-color: rgb(248,183,183)">
                                         <div class="d-flex w-100 justify-content-between">
-                                          <h5 class="mb-1 text-truncate" style="max-width: 60%;">{{item.title}}</h5>
+                                          <h5 class="mb-1 text-break" style="max-width: 60%;">{{item.title}}</h5>
                                           <small>{{item.created_at}}</small>
                                         </div>
                                         <p class="mb-1 text-break"  >{{item.description}}</p>
@@ -56,10 +56,10 @@
                                     <div class="list-group mt-3 ">
                                       <div class="list-group-item align-items-start" style="background-color: rgb(205,248,183)">
                                         <div class="d-flex w-100 justify-content-between">
-                                          <h5 class="mb-1">{{item.title}}</h5>
+                                          <h5 class="mb-1 text-break" style="max-width: 60%;">{{item.title}}</h5>
                                           <small>{{item.created_at}}</small>
                                         </div>
-                                        <p class="mb-1">{{item.description}}</p>
+                                        <p class="mb-1 text-break">{{item.description}}</p>
                                         <div class="d-flex justify-content-end">
                                           <form action="{% url 'delete' id=item.id %}" method="post">{% csrf_token %}
                                               <button type="submit" class="btn btn-danger">DELETE</button>
