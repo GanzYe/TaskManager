@@ -5,14 +5,15 @@ from django.urls import reverse
 
 
 class Tasks(models.Model):
-    STATUS = [
-        {'fulfilled', 'Fulfilled'},
-        {'unfulfilled', 'Unfulfilled'}
-    ]
+
+    class STATUS(models.TextChoices):
+        UNCOMPLETED = 'unCOM'
+        COMPLETED = 'COM'
+
     title = models.CharField(verbose_name="Task Name", max_length=255)
     description = models.TextField(verbose_name="Description")
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    status = models.CharField(max_length=255, choices=STATUS, default="unfulfilled")
+    status = models.CharField(max_length=255, choices=STATUS.choices, default=STATUS.UNCOMPLETED)
     created_at = models.DateTimeField("Created at", auto_now_add=timezone.now())
 
     def __str__(self):

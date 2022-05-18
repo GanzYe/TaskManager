@@ -1,3 +1,5 @@
+import logging
+
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
@@ -13,8 +15,8 @@ from tasks.forms import TasksForm
 @login_required(login_url='/login')
 def allTasks(request):
     context = {
-        'fulfilled_tasks': Tasks.objects.filter(status="fulfilled", author=request.user.id),
-        'unfulfilled_tasks': Tasks.objects.filter(status="unfulfilled", author=request.user.id),
+        'completed_tasks': Tasks.objects.all().filter(status=Tasks.STATUS.COMPLETED, author=request.user.id),
+        'uncompleted_tasks': Tasks.objects.all().filter(status=Tasks.STATUS.UNCOMPLETED, author=request.user.id),
     }
     return render(request, 'tasks/index.html', context)
 
@@ -38,7 +40,8 @@ def edit(request, id):
         return redirect('/')
     else:
         task = Tasks.objects.get(id=id)
-        task.status = "fulfilled"
+        task.status = Tasks.STATUS.COMPLETED
+        task.full_clean()
         task.save()
         return redirect('/')
 
