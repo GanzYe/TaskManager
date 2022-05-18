@@ -11,3 +11,4 @@ Kroky:
 5. Přejít do "cd taskManager".
 6. Stáhnout a nainstalovat django  "python -m pip install django".
 7. Spustit s pomocí příkazu "docker-compose build" a "docker-compose up".
+8. Otevřít hyperlink "localhost:8000" v prohlížeči.
