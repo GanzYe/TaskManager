@@ -8,6 +8,6 @@ Kroky:
 2. Zaarchivovat projekt k sobě.
 3. Otevřit cmd a přejít do projektu. Například: "cd D:\WORK\TaskManager".
 4. Aktivovat venv s pomocí příkazu "env\Scripts\activate".
-5. Pak přejít do "cd taskManager".
+5. Přejít do "cd taskManager".
 6. Stáhnout a nainstalovat django  "python -m pip install django".
-7. Pak spustit s pomocí příkazu "docker-compose build" a "docker-compose up".
+7. Spustit s pomocí příkazu "docker-compose build" a "docker-compose up".
